@@ -71,8 +71,8 @@ public class JobRestClient implements JobClient {
     @Override
     public CompletableFuture<EmptyResponseBody> jobTerminate(String jobId, String mode) throws IOException {
         JobCancellationMessageParameters parameters = new JobCancellationMessageParameters();
-        toIllegalArgument(() -> parameters.jobPathParameter.resolveFromString(jobId));
-        toIllegalArgument(() -> parameters.terminationModeQueryParameter.resolveFromString(mode));
+        toIllegalArgument(() -> parameters.getPathParameters().stream().findAny().get().resolveFromString(jobId));
+        toIllegalArgument(() -> parameters.getQueryParameters().stream().findAny().get().resolveFromString(mode));
         return client.sendRequest(address, port, JobCancellationHeaders.getInstance(), parameters, EmptyRequestBody.getInstance());
     }
 

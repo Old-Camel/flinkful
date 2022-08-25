@@ -29,7 +29,7 @@ public class StandaloneSessionExample {
      */
     private static Configuration buildConfiguration() throws MalformedURLException {
         Configuration configuration = FlinkExamples.loadConfiguration();
-        configuration.setString(JobManagerOptions.ADDRESS, "localhost");
+        configuration.setString(JobManagerOptions.ADDRESS, "222.30.195.178");
         configuration.setInteger(JobManagerOptions.PORT, 6123);
         configuration.setInteger(RestOptions.PORT, 8081);
         URL exampleUrl = new File(FlinkExamples.EXAMPLE_JAR).toURL();
