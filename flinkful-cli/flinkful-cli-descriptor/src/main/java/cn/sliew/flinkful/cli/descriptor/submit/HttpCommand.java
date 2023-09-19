@@ -25,12 +25,11 @@ import java.util.stream.Collectors;
 public class HttpCommand implements SubmitCommand {
 
     @Override
-    public ClusterClient submit(Path flinkHome, Configuration configuration, PackageJarJob job) throws Exception {
+    public JobID submit(Path flinkHome, Configuration configuration, PackageJarJob job) throws Exception {
         String webInterfaceURL = configuration.get(RestOptions.ADDRESS);
         JarUploadResponse jarUploadResponse = uploadJar(webInterfaceURL, new File(job.getJarFilePath()));
         String jarId = jarUploadResponse.getFilename().substring(jarUploadResponse.getFilename().lastIndexOf("/") + 1);
-        run(webInterfaceURL, jarId, job);
-        return null;
+        return run(webInterfaceURL, jarId, job);
     }
 
     private JarUploadResponse uploadJar(String webInterfaceURL, File jarFile) throws IOException {

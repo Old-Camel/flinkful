@@ -2,6 +2,7 @@ package cn.sliew.flinkful.cli.descriptor.submit;
 
 import cn.sliew.flinkful.cli.base.submit.PackageJarJob;
 import cn.sliew.flinkful.cli.base.util.FlinkUtil;
+import org.apache.flink.api.common.JobID;
 import org.apache.flink.client.deployment.executors.LocalExecutor;
 import org.apache.flink.client.program.ClusterClient;
 import org.apache.flink.client.program.MiniClusterClient;
@@ -19,13 +20,13 @@ import java.util.concurrent.ExecutionException;
 public class MiniClusterCommand implements SubmitCommand {
 
     @Override
-    public ClusterClient submit(Path flinkHome, Configuration configuration, PackageJarJob job) throws Exception {
+    public JobID submit(Path flinkHome, Configuration configuration, PackageJarJob job) throws Exception {
         MiniCluster cluster = createCluster(configuration);
         MiniClusterClient client = createClusterClient(cluster, configuration);
         PackagedProgram program = FlinkUtil.buildProgram(configuration, job);
         JobGraph jobGraph = PackagedProgramUtils.createJobGraph(program, configuration, 1, false);
-        client.submitJob(jobGraph).get();
-        return client;
+        return client.submitJob(jobGraph).get();
+
     }
 
     private MiniCluster createCluster(Configuration config) throws Exception {

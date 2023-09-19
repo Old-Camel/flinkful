@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.apache</groupId>
-        <artifactId>apache</artifactId>
-        <version>20</version>
-    </parent>
+<!--    <parent>-->
+<!--        <groupId>org.apache</groupId>-->
+<!--        <artifactId>apache</artifactId>-->
+<!--        <version>20</version>-->
+<!--    </parent>-->
 
     <groupId>cn.sliew</groupId>
     <artifactId>flinkful</artifactId>
-    <version>1.17.0_1_11-SNAPSHOT</version>
+    <version>1.17.0_1_8-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>flinkful</name>
     <url>https://github.com/flowerfine/flinkful</url>
@@ -45,14 +45,15 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>sonatype-nexus</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+            <id>yunzai-nexus3</id>
+            <url>http://222.30.194.85:8081/repository/maven-yunzai-snapshot/</url>
         </snapshotRepository>
         <repository>
-            <id>sonatype-nexus</id>
-            <name>Sonatype Nexus Release</name>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>yunzai-nexus3</id>
+            <!-- 注意如果发布的是 snapshot 版本的代码，必须使用该地址，而且版本号，必须是 -SNAPSHOT 结尾 -->
+<!--                        <url>http://222.30.194.85:8081/repository/maven-yunzai-snapshot/</url>-->
+            <!-- 注意如果发布的是 release 版本的代码，必须使用该地址，而且版本号，必须不能带 snapshot -->
+            <url>http://222.30.194.85:8081/repository/maven-yunzai-release/</url>
         </repository>
     </distributionManagement>
 
@@ -69,7 +70,7 @@
         <module>flinkful-cli</module>
         <module>flinkful-rest</module>
         <module>flinkful-examples</module>
-        <module>flinkful-kubernetes-operator</module>
+<!--        <module>flinkful-kubernetes-operator</module>-->
     </modules>
 
     <properties>
@@ -77,7 +78,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <scala.binary.version>2.12</scala.binary.version>
         <scala.version>2.12.7</scala.version>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
@@ -86,7 +87,7 @@
         <flink.version>1.17.0</flink.version>
         <flink.kubernetes.operator.version>1.4.0</flink.kubernetes.operator.version>
         <knife4j.version>3.0.2</knife4j.version>
-        <milky.version>1.0.10</milky.version>
+        <milky.version>1.0.11</milky.version>
         <mybatis.plus.version>3.5.1</mybatis.plus.version>
         <mysql.connector.version>8.0.28</mysql.connector.version>
         <feign.version>12.3</feign.version>
